@@ -298,40 +298,7 @@ python data_assistant.py" tabindex="0" role="button">
   -p 5532:5432 \
   --name pgvector \
   phidata/pgvector:16" tabindex="0" role="button">
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-</svg>
-      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-</svg>
-    </clipboard-copy>
-  </div></div>
-<ol start="2" dir="auto">
-<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建 PDF 助手</font></font></li>
-</ol>
-<ul dir="auto">
-<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建文件</font></font><code>pdf_assistant.py</code></li>
-</ul>
-<div class="highlight highlight-source-python notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-k">import</span> <span class="pl-s1">typer</span>
-<span class="pl-k">from</span> <span class="pl-s1">rich</span>.<span class="pl-s1">prompt</span> <span class="pl-k">import</span> <span class="pl-v">Prompt</span>
-<span class="pl-k">from</span> <span class="pl-s1">typing</span> <span class="pl-k">import</span> <span class="pl-v">Optional</span>, <span class="pl-v">List</span>
-<span class="pl-k">from</span> <span class="pl-s1">phi</span>.<span class="pl-s1">assistant</span> <span class="pl-k">import</span> <span class="pl-v">Assistant</span>
-<span class="pl-k">from</span> <span class="pl-s1">phi</span>.<span class="pl-s1">storage</span>.<span class="pl-s1">assistant</span>.<span class="pl-s1">postgres</span> <span class="pl-k">import</span> <span class="pl-v">PgAssistantStorage</span>
-<span class="pl-k">from</span> <span class="pl-s1">phi</span>.<span class="pl-s1">knowledge</span>.<span class="pl-s1">pdf</span> <span class="pl-k">import</span> <span class="pl-v">PDFUrlKnowledgeBase</span>
-<span class="pl-k">from</span> <span class="pl-s1">phi</span>.<span class="pl-s1">vectordb</span>.<span class="pl-s1">pgvector</span> <span class="pl-k">import</span> <span class="pl-v">PgVector2</span>
-
-<span class="pl-s1">db_url</span> <span class="pl-c1">=</span> <span class="pl-s">"postgresql+psycopg://ai:ai@localhost:5532/ai"</span>
-
-<span class="pl-s1">knowledge_base</span> <span class="pl-c1">=</span> <span class="pl-v">PDFUrlKnowledgeBase</span>(
-    <span class="pl-s1">urls</span><span class="pl-c1">=</span>[<span class="pl-s">"https://phi-public.s3.amazonaws.com/recipes/ThaiRecipes.pdf"</span>],
-    <span class="pl-s1">vector_db</span><span class="pl-c1">=</span><span class="pl-v">PgVector2</span>(<span class="pl-s1">collection</span><span class="pl-c1">=</span><span class="pl-s">"recipes"</span>, <span class="pl-s1">db_url</span><span class="pl-c1">=</span><span class="pl-s1">db_url</span>),
-)
-<span class="pl-c"># Comment out after first run</span>
-<span class="pl-s1">knowledge_base</span>.<span class="pl-en">load</span>()
-
-<span class="pl-s1">storage</span> <span class="pl-c1">=</span> <span class="pl-v">PgAssistantStorage</span>(<span class="pl-s1">table_name</span><span class="pl-c1">=</span><span class="pl-s">"pdf_assistant"</span>, <span class="pl-s1">db_url</span><span class="pl-c1">=</span><span class="pl-s1">db_url</span>)
-
-
+     
 <span class="pl-k">def</span> <span class="pl-en">pdf_assistant</span>(<span class="pl-s1">new</span>: <span class="pl-s1">bool</span> <span class="pl-c1">=</span> <span class="pl-c1">False</span>, <span class="pl-s1">user</span>: <span class="pl-s1">str</span> <span class="pl-c1">=</span> <span class="pl-s">"user"</span>):
     <span class="pl-s1">run_id</span>: <span class="pl-v">Optional</span>[<span class="pl-s1">str</span>] <span class="pl-c1">=</span> <span class="pl-c1">None</span>
 
